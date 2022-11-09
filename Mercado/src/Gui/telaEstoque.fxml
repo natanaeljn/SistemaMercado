@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="1179.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.EstoqueController">
+   <children>
+      <ImageView fitHeight="210.0" fitWidth="244.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Pictures/fullsize_2018_02_27_16_Logo-234916_43234_163745785_1072263102.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="209.0" layoutY="152.0" prefHeight="58.0" prefWidth="971.0" style="-fx-background-color: #E8E8E8;">
+         <children>
+            <Button fx:id="editar" layoutX="869.0" layoutY="17.0" mnemonicParsing="false" onAction="#onBtEditar" prefHeight="25.0" prefWidth="78.0" text="EDITAR" />
+            <Button fx:id="atualizar" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#onBtAtualizar" prefHeight="25.0" prefWidth="78.0" text="ATUALIZAR" />
+         </children></AnchorPane>
+      <AnchorPane layoutX="209.0" prefHeight="58.0" prefWidth="971.0" style="-fx-background-color: #1E90FF;" />
+      <TableView fx:id="tableViewProduto" layoutY="210.0" prefHeight="498.0" prefWidth="1179.0">
+         <columns>
+            <TableColumn fx:id="tableColumnId" prefWidth="88.0" text="ID" />
+            <TableColumn fx:id="tableColumnNome" prefWidth="298.0" text="NOME" />
+            <TableColumn fx:id="tableColumnCodigo" prefWidth="223.0" text="CODIGO" />
+            <TableColumn fx:id="tableColumnDataEntrada" prefWidth="278.0" text="DATAENTRADA" />
+            <TableColumn fx:id="tableColumnValor" minWidth="0.0" prefWidth="172.0" text="VALOR" />
+            <TableColumn fx:id="tableColumnIdDepart" prefWidth="119.0" text="IDDEPARTAMENTO" />
+         </columns>
+      </TableView>
+      <Button fx:id="adicionarProduto" layoutX="301.0" layoutY="73.0" mnemonicParsing="false" onAction="#onBtAdicionar" prefHeight="64.0" prefWidth="289.0" text="Adicionar produto">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="removerProduto" layoutX="771.0" layoutY="73.0" mnemonicParsing="false" onAction="#onBtRemover" prefHeight="64.0" prefWidth="289.0" text="Remover produto">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

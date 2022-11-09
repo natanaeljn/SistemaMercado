@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="785.0" prefWidth="1044.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.CaixaController">
+   <children>
+      <ImageView fitHeight="279.0" fitWidth="279.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Pictures/fullsize_2018_02_27_16_Logo-234916_43234_163745785_1072263102.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="278.0" layoutY="222.0" prefHeight="56.0" prefWidth="766.0" style="-fx-background-color: #E8E8E8;">
+         <children>
+            <Button layoutX="670.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" style="-fx-background-color: #E8E8E8;" text="Voltar">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="349.0" layoutY="14.0" prefHeight="73.0" prefWidth="625.0" text="Digite o ID ou codigo de barra:">
+         <font>
+            <Font size="36.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+      <TextField fx:id="buscar" alignment="CENTER" layoutX="480.0" layoutY="126.0" prefHeight="56.0" prefWidth="362.0" promptText="Digite aqui">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="tableViewProduto" layoutX="-1.0" layoutY="278.0" prefHeight="503.0" prefWidth="1044.0">
+        <columns>
+          <TableColumn fx:id="tableColumnId" prefWidth="88.0" text="ID" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="238.0" text="NOME" />
+            <TableColumn fx:id="tableColumnCodigo" prefWidth="172.0" text="CODIGO" />
+            <TableColumn fx:id="tableColumnDataEntrada" prefWidth="183.0" text="DATAENTRADA" />
+            <TableColumn fx:id="tableColumnValor" prefWidth="195.0" text="VALOR" />
+            <TableColumn fx:id="tableColumnIdDepart" prefWidth="167.0" text="IDDEPARTAMENTO" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="-1.0" layoutY="780.0" prefHeight="63.0" prefWidth="1044.0" style="-fx-background-color: #E8E8E8;">
+         <children>
+            <Label alignment="CENTER" layoutX="662.0" layoutY="8.0" prefHeight="47.0" prefWidth="79.0" text="Total : ">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="result" layoutX="741.0" layoutY="11.0" prefHeight="41.0" prefWidth="236.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="adicionar" layoutX="894.0" layoutY="191.0" mnemonicParsing="false" onAction="#onBtAdicionar" prefHeight="25.0" prefWidth="125.0" text="Adicionar" />
+   </children>
+</AnchorPane>
