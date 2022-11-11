@@ -2,6 +2,7 @@ package Gui;
 
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,11 +10,11 @@ import java.util.ResourceBundle;
 
 import Aplicacao.TelaAdicionar;
 import Aplicacao.TelaEditar;
-import Aplicacao.TelaEstoque;
+
+import Db.DAO;
 import Entidades.Produto;
 import Gui.util.Alerta;
 import Gui.util.Utils;
-import JDBC.DAO;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,6 +31,7 @@ import javafx.stage.Stage;
 
 
 public class EstoqueController implements Initializable {
+	
 	DAO dao = new DAO();
 	@FXML
 	private Button atualizar;
@@ -73,13 +75,12 @@ public class EstoqueController implements Initializable {
 	public void initializeNodes() {
 		updateTableView();
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		
-		tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
+	    tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
 		tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigoBarras"));
-		tableColumnDataEntrada.setCellValueFactory(new PropertyValueFactory<>("dataEntrada"));
+		tableColumnDataEntrada.setCellValueFactory(new PropertyValueFactory<>(("dataEntrada")));
 		Utils.formatTableColumnDate(tableColumnDataEntrada, "dd/MM/yyyy");
 		tableColumnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-		Utils.formatTableColumnDouble(tableColumnValor, 2);
+		
 		tableColumnIdDepart.setCellValueFactory(new PropertyValueFactory<>("departamentoId"));
         
 		tableViewProduto.setItems(obsList);

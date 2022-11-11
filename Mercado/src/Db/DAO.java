@@ -1,4 +1,4 @@
-package JDBC;
+package Db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -243,7 +243,6 @@ public class DAO {
 			String sql = "select*from produto where codigo =" + codigo;
 			PreparedStatement statement = conn.prepareStatement(sql);
 			ResultSet resultado = statement.executeQuery();
-			/* buscamos pelo nome da coluna , exemplo id */
 			while (resultado.next()) {
 
 				retorno.setId(resultado.getInt("Id"));

@@ -29,7 +29,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" layoutX="349.0" layoutY="14.0" prefHeight="73.0" prefWidth="625.0" text="Digite o ID ou codigo de barra:">
+      <Label alignment="CENTER" layoutX="288.0" layoutY="7.0" prefHeight="41.0" prefWidth="625.0" text="Digite o ID ou codigo de barra:">
          <font>
             <Font size="36.0" />
          </font>
@@ -44,7 +44,7 @@
             </Lighting>
          </effect>
       </Label>
-      <TextField fx:id="buscar" alignment="CENTER" layoutX="480.0" layoutY="126.0" prefHeight="56.0" prefWidth="362.0" promptText="Digite aqui">
+      <TextField fx:id="buscar" alignment="CENTER" layoutX="420.0" layoutY="60.0" prefHeight="56.0" prefWidth="362.0" promptText="Digite Aqui">
          <font>
             <Font size="24.0" />
          </font>
@@ -74,5 +74,15 @@
          </children>
       </AnchorPane>
       <Button fx:id="adicionar" layoutX="894.0" layoutY="191.0" mnemonicParsing="false" onAction="#onBtAdicionar" prefHeight="25.0" prefWidth="125.0" text="Adicionar" />
+      <Label alignment="CENTER" layoutX="370.0" layoutY="112.0" prefHeight="25.0" prefWidth="463.0" text="Quantidade:">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="quantidadeTx" alignment="CENTER" layoutX="421.0" layoutY="160.0" prefHeight="56.0" prefWidth="362.0" promptText="Digite Aqui">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

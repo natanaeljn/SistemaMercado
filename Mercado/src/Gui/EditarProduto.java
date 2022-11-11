@@ -6,9 +6,9 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import Aplicacao.TelaEditar;
+import Db.DAO;
 import Entidades.Produto;
 import Gui.util.Alerta;
-import JDBC.DAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

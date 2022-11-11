@@ -1,6 +1,7 @@
 package Gui;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -8,10 +9,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import Db.DAO;
 import Entidades.Produto;
 import Gui.util.Alerta;
-import Gui.util.Utils;
-import JDBC.DAO;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -28,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CaixaController implements Initializable {
 	DAO dao = new DAO();
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	@FXML
 	private Button adicionar;
 	@FXML
@@ -51,6 +54,8 @@ public class CaixaController implements Initializable {
 	private TextField buscar;
 	@FXML
 	private Label result;
+	@FXML
+	private TextField quantidadeTx;
 
 	public static ObservableList<Produto> obsList = FXCollections.observableArrayList();
 	public static Set<Produto> list = new HashSet<Produto>();
@@ -59,16 +64,15 @@ public class CaixaController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
         
 	}
+	
 
 	public void initializeNodes() {
 		
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
 		tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigoBarras"));
-		tableColumnDataEntrada.setCellValueFactory(new PropertyValueFactory<>("dataEntrada"));
-		Utils.formatTableColumnDate(tableColumnDataEntrada, "dd/MM/yyyy");
+		tableColumnDataEntrada.setCellValueFactory(new PropertyValueFactory<Produto,Date>(("dataEntrada")));
 		tableColumnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-		Utils.formatTableColumnDouble(tableColumnValor, 2);
 		tableColumnIdDepart.setCellValueFactory(new PropertyValueFactory<>("departamentoId"));
         tableViewProduto.setItems(obsList);
 		tableViewProduto.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -80,7 +84,7 @@ public class CaixaController implements Initializable {
 		try {
 			list.add(dao.buscar(prod));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		obsList = FXCollections.observableArrayList(list);
@@ -94,25 +98,40 @@ public class CaixaController implements Initializable {
 
 	}
 
-	public void onBtAdicionar() {
+	public void onBtAdicionar()  {
 		Integer busca = Integer.parseInt(buscar.getText());
+		
 		try {
 			dao.buscar(busca);
 			dao.buscarCodigo(busca);
-			if (dao.buscar(busca) != null||dao.buscarCodigo(busca) != null) {
+           
+			
+             if (dao.buscar(busca) != null) {
+				
 				updateTableView(busca);
 				initializeNodes();
-				onLabel();
+				Integer quantidade = Integer.parseInt(quantidadeTx.getText());
+				onLabel(quantidade);
 			
 			}
-			else {
-				Alerta.showAlert("Erro", null, "Produto nao encontrado , digite novamente", AlertType.WARNING);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+             else if(dao.buscarCodigo(busca) != null){
+            	 updateTableView(busca);
+ 				initializeNodes();
+ 				Integer quantidade = Integer.parseInt(quantidadeTx.getText());
+				onLabel(quantidade);
+             }
+			
+			
 		}
-	}
+		catch(Exception e) {
+			Alerta.showAlert("nulo", "Valor do id nao existe , digite novamente", null, AlertType.ERROR);
+		}
+		
+		}
+		
+		
+		
+	
 	public Double total ( ) {
 		double tot = 0 ;
 		for(Produto x : list) {
@@ -120,8 +139,9 @@ public class CaixaController implements Initializable {
 		}
 		return tot;
 	}
-	public void onLabel() {
-		result.setText(String.valueOf(total()));
+	public void onLabel(Integer quantidade) {
+		result.setText(String.valueOf(total() * quantidade));
+		
 	}
 
 }

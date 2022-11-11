@@ -10,7 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -25,13 +28,17 @@ public class LoginController implements Initializable {
 	@FXML
 	private TextField user;
 	@FXML
-	private TextField sen;
+	private TextField tfSenha;
+	@FXML
+	private PasswordField psSenha;
 	@FXML
 	private Button entrar;
+	@FXML
+	private Button mostrarSenha;
 
 	public void entre() {
 		String us = user.getText();
-		String se = sen.getText();
+		String se = psSenha.getText();
 		login.correto(us, se);
 
 		if (login.logs == true) {
@@ -66,5 +73,11 @@ public class LoginController implements Initializable {
 	public void fecharTela() {
 		Aplicacao.Login.getStage().close();
 	}
+	
 
+	public void onBtMostrarSenha() {
+		psSenha.setVisible(true);
+			
+	
+}
 }
